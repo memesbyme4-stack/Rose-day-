@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Rose Day 🌹</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    font-family:'Segoe UI',sans-serif;
+    overflow:hidden;
+}
+
+.screen{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    transition:0.8s ease;
+}
+
+.hidden{
+    opacity:0;
+    pointer-events:none;
+    transform:scale(0.8);
+}
+
+.card{
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(12px);
+    padding:35px 45px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 25px 60px rgba(0,0,0,0.3);
+    animation:pop 1s ease;
+}
+
+@keyframes pop{
+    from{transform:scale(0.6);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+h1{
+    color:#fff;
+    font-size:2.3rem;
+    text-shadow:0 0 15px rgba(255,255,255,0.7);
+}
+
+.tap{
+    margin-top:15px;
+    padding:12px 30px;
+    border-radius:30px;
+    background:#fff;
+    color:#ff3b6f;
+    font-weight:bold;
+    cursor:pointer;
+    animation:pulse 1.4s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+    100%{transform:scale(1);}
+}
+
+.rose{
+    width:150px;
+    margin:20px auto;
+    animation:sway 3s ease-in-out infinite;
+}
+
+@keyframes sway{
+    0%,100%{transform:rotate(-3deg);}
+    50%{transform:rotate(3deg);}
+}
+
+.heart{
+    position:absolute;
+    bottom:-20px;
+    color:rgba(255,255,255,0.7);
+    animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+    from{transform:translateY(0);opacity:1;}
+    to{transform:translateY(-120vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- First Screen -->
+<div class="screen" id="first">
+    <div class="card">
+        <h1>Ek surprise hai tere liye 🎁</h1>
+        <div class="tap" onclick="openSurprise()">Tap to Open</div>
+    </div>
+</div>
+
+<!-- Second Screen -->
+<div class="screen hidden" id="second">
+    <div class="card">
+        <h1>Happy Rose Day 🌹</h1>
+        <h2 style="color:white;">Disha ❤️</h2>
+
+        <svg class="rose" viewBox="0 0 200 300">
+            <path d="M100 140 C60 110,40 70,100 50 C160 70,140 110,100 140Z" fill="#e60026"/>
+            <path d="M100 160 C70 140,60 120,100 110 C140 120,130 140,100 160Z" fill="#ff1a3c"/>
+            <rect x="95" y="160" width="10" height="90" fill="#1e7f3b"/>
+            <path d="M95 200 C60 190,50 210,80 220" fill="#2ecc71"/>
+            <path d="M105 210 C140 200,150 220,120 230" fill="#2ecc71"/>
+        </svg>
+    </div>
+</div>
+
+<script>
+function openSurprise(){
+    document.getElementById("first").classList.add("hidden");
+    document.getElementById("second").classList.remove("hidden");
+}
+
+function createHeart(){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(14+Math.random()*20)+"px";
+    h.style.animationDuration=(4+Math.random()*3)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),7000);
+}
+setInterval(createHeart,450);
+</script>
+
+</body>
+</html>
